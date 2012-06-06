@@ -6,6 +6,13 @@
  * Licensed under the MIT license.
  */
 
-exports.awesome = function() {
-  return 'awesome';
+module.exports = function( grunt ) {
+	grunt.registerTask( 'junit:env', function() {
+		if( !process.env.JUNIT_OUTPUT ){
+			grunt.fail.fatal( "The junit grunt plugin requires a directory be set " +
+												"for junit output in the env variable JUNIT_OUTPUT" );
+		}
+	});
+
+	grunt.registerTask( 'junit', 'junit:env qunit' );
 };
