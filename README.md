@@ -1,6 +1,6 @@
 # grunt-junit
 
-A small alteration to grunt's default phantom.js and qunit.js files.
+A small alteration to grunt's default phantom.js and qunit.js files to render rudimentary junit compatible xml for use with Jenkins.
 
 ## Important
 
