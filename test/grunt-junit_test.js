@@ -1,34 +1,25 @@
-var grunt_junit = require('../lib/grunt-junit.js');
+var easy = require( 'libxmljs-easy' ),
+  fs = require( 'fs' ),
+  glob = require( 'glob-whatev' );
 
-/*
-  ======== A Handy Little Nodeunit Reference ========
-  https://github.com/caolan/nodeunit
-
-  Test methods:
-    test.expect(numAssertions)
-    test.done()
-  Test assertions:
-    test.ok(value, [message])
-    test.equal(actual, expected, [message])
-    test.notEqual(actual, expected, [message])
-    test.deepEqual(actual, expected, [message])
-    test.notDeepEqual(actual, expected, [message])
-    test.strictEqual(actual, expected, [message])
-    test.notStrictEqual(actual, expected, [message])
-    test.throws(block, [error], [message])
-    test.doesNotThrow(block, [error], [message])
-    test.ifError(value)
-*/
-
-exports['awesome'] = {
+exports['xml-output'] = {
   setUp: function(done) {
-    // setup here
+    var outputFile = glob.glob( process.env.JUNIT_OUTPUT + "TEST-*.xml" )[0];
+    var xml = fs.readFileSync( outputFile ).toString();
+    this.xmlObject = easy.parse( xml );
     done();
   },
-  'no args': function(test) {
-    test.expect(1);
-    // tests here
-    test.equal(grunt_junit.awesome(), 'awesome', 'should be awesome.');
+
+  'equal test failure': function(test) {
+    test.equal('expected: true, but was: false',
+               this.xmlObject.testcase[0].failure.$message,
+               'should be a failure');
+    test.done();
+  },
+
+  'equal test success': function(test) {
+    test.equal('', this.xmlObject.testcase[1].failure.$message,
+               'should not be a failure');
     test.done();
   }
 };

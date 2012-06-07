@@ -24,7 +24,6 @@ var url = phantom.args[2];
 // Keep track of the last time a QUnit message was sent.
 var last = new Date();
 
-
 // Use the pathname and query string params to determine the file name
 // 1. split on the domain, to get the pathname
 // 2. remove the file extension

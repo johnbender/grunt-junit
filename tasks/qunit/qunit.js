@@ -22,9 +22,6 @@ function sendMessage() {
 	alert(JSON.stringify(args));
 }
 
-sendMessage('console', "" );
-sendMessage('console', "jquery version: " + $.fn.jquery + " pathname: " + location.pathname );
-
 QUnit.log = function(obj) {
 	// What is this I don’t even
 	if (obj.message === '[object Object], undefined:undefined') { return; }
@@ -92,7 +89,7 @@ QUnit.done = function(obj) {
 
 	xml += '</testsuite>\n';
 	sendMessage( "xml", xml );
-	sendMessage('done', obj.failed, obj.passed, obj.total, obj.runtime);
+	sendMessage( 'done', obj.failed, obj.passed, obj.total, obj.runtime);
 };
 
 function xmlEncode(message) {

@@ -32,7 +32,9 @@
     "grunt": "~0.3.9"
   },
   "devDependencies": {
-    "grunt": "~0.3.9"
+    "grunt": "~0.3.9",
+    "libxmljs-easy": "0.1.0",
+    "glob-whatev": "~0.1.4"
   },
   "keywords": [
     "gruntplugin"

@@ -5,24 +5,22 @@ module.exports = function(grunt) {
     pkg: '<json:package.json>',
 
     test: {
-      files: ['test/**/*.js']
+      files: ['test/**/*_test.js']
     },
 
     qunit: {
-      all: ['http://localhost:8000/test/dummy.html', 'http://localhost:8000/test/bar.html']
-    },
-    server: {
-      port: 8000,
-      base: '.'
+      all: ['test/*-tests.html']
     },
 
     lint: {
       files: ['grunt.js', 'lib/**/*.js', 'test/**/*.js']
     },
+
     watch: {
       files: '<config:lint.files>',
       tasks: 'default'
     },
+
     jshint: {
       options: {
         curly: true,
@@ -45,5 +43,11 @@ module.exports = function(grunt) {
 
   // Default task.
   grunt.registerTask('default', 'lint test');
-	grunt.registerTask('test:xml', 'qunit test');
+
+	// Load the new qunite dependent files
+	grunt.loadTasks( 'tasks');
+
+	// setup the testing task which will first generate xml
+	// then test the xml to make sure it's valid
+	grunt.registerTask('xml-test', 'junit test');
 };
