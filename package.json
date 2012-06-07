@@ -1,7 +1,7 @@
 {
   "name": "grunt-junit",
   "description": "A small alteration to grunt's default phantom.js and qunit.js files",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/johnbender/grunt-junit",
   "author": {
     "name": "John Bender",
