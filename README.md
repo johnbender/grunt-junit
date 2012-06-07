@@ -13,19 +13,14 @@ Install the module with: `npm install grunt-junit`
 grunt.loadNpmTasks( "grunt-junit" );
 ```
 
-And then run your test suite as usual
+Then from the command line:
 
-## Documentation
-_(Coming soon)_
+    $ JUNIT_OUTPUT=test-output-dir grunt junt
 
-## Examples
-_(Coming soon)_
+The junit task is identical to the running qunit save for the additional xml rendering to the output directory. You can find information on configuring the qunit grunt task [here](https://github.com/cowboy/grunt/blob/master/docs/task_qunit.md).
 
 ## Contributing
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [grunt](https://github.com/cowboy/grunt).
-
-## Release History
-_(Nothing yet)_
+In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using `grunt lint` from the project root.
 
 ## License
 Copyright (c) 2012 John Bender
