@@ -29,12 +29,14 @@ var last = new Date();
 // 2. remove the file extension
 // 3. replace the separator, query assignments, and query separator
 // 4. remove duped dashes (ugh)
+// 5. remove trailing slash
 // TODO This could use some real arguments love but those are passed in by grunt
-//      Could easily be simplified
+//      Could probably be simplified
 var suiteName = url.split(/\/\/[^\/]+/)[1]
   .replace(/.[a-z]+$/, "")
   .replace(/[\/=?](.)/g, "-$1")
-  .replace(/\-+/g, "-");
+  .replace(/\-+/g, "-")
+  .replace(/\/$/g, "");
 
 var buildOutpuDir = system.env['JUNIT_OUTPUT'];
 
