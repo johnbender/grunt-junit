@@ -34,9 +34,9 @@ var last = new Date();
 //      Could probably be simplified
 var suiteName = url.split(/\/\/[^\/]+/)[1]
   .replace(/.[a-z]+$/, "")
-  .replace(/[\/=?](.)/g, "-$1")
-  .replace(/\-+/g, "-")
-  .replace(/\/$/g, "");
+  .replace(/[\/=\?]/g, "-")
+  .replace(/^\-|\-$/g, "")
+  .replace(/\-+/g, "-");
 
 var buildOutpuDir = system.env['JUNIT_OUTPUT'];
 
@@ -44,7 +44,7 @@ if( !fs.exists(buildOutpuDir) ){
   fs.makeDirectory(buildOutpuDir);
 }
 
-var resultsFilename = buildOutpuDir + 'TEST' + suiteName + ".xml";
+var resultsFilename = buildOutpuDir + 'TEST-' + suiteName + ".xml";
 
 if( fs.exists(resultsFilename) ){
   fs.remove( resultsFilename );
