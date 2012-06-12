@@ -28,8 +28,8 @@ var last = new Date();
 // 1. split on the domain, to get the pathname
 // 2. remove the file extension
 // 3. replace the separator, query assignments, and query separator
-// 4. remove duped dashes (ugh)
-// 5. remove trailing slash
+// 4. remove preceeding and trailing slashes
+// 5. remove duped dashes (ugh)
 // TODO This could use some real arguments love but those are passed in by grunt
 //      Could probably be simplified
 var suiteName = url.split(/\/\/[^\/]+/)[1]
