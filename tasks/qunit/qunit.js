@@ -22,7 +22,7 @@ function sendMessage() {
 	alert(JSON.stringify(args));
 }
 
-QUnit.log = function(obj) {
+QUnit.log(function(obj) {
 	// What is this I don’t even
 	if (obj.message === '[object Object], undefined:undefined') { return; }
 	// Parse some stuff before sending it.
@@ -47,7 +47,7 @@ QUnit.log = function(obj) {
 	var xml = '\t<failure type="failed" message="' + xmlEncode(message) + '"></failure>\n';
 
 	failures.push(xml);
-};
+});
 
 QUnit.testStart = function(obj) {
 	sendMessage('testStart', obj.name);
