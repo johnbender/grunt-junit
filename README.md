@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/johnbender/grunt-junit.png)](http://travis-ci.org/johnbender/grunt-junit)
 # grunt-junit
 
 A small alteration to grunt's default phantom.js and qunit.js files to render rudimentary junit compatible xml for use with Jenkins.
