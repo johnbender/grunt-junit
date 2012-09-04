@@ -15,9 +15,9 @@ grunt.loadNpmTasks( "grunt-junit" );
 
 Then from the command line:
 
-    JUNIT_OUTPUT=test-output-dir grunt junit
+    JUNIT_OUTPUT=test-output-dir/ grunt junit
 
-All the xml can be found inside the `test-output-dir`.
+All the xml can be found inside the `test-output-dir/`.
 
 ## Further Information
 
