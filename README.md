@@ -2,6 +2,8 @@
 
 A small alteration to grunt's default phantom.js and qunit.js files to render rudimentary junit compatible xml for use with Jenkins.
 
+**Warning** This is primarily used to "get the job done" and there are issues with test timeouts generating broken xml and the testnames in the junit xml output. Feel free to submit PR's if you are feeling frisky.
+
 ## Important
 
 This plugin currently overrides the default phantom.js and qunit.js files that are included with grunt.
