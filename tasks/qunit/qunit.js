@@ -22,6 +22,11 @@ function sendMessage() {
 	alert(JSON.stringify(args));
 }
 
+function xmlEncode(message) {
+	return message.replace(/\&/g,'&amp;').replace(/</g,'&lt;')
+		.replace(/>/g,'&gt;').replace(/\'/g,'&apos;').replace(/\"/g,'&quot;');
+}
+
 QUnit.log(function(obj) {
 	// What is this I don’t even
 	if (obj.message === '[object Object], undefined:undefined') { return; }
@@ -91,8 +96,3 @@ QUnit.done = function(obj) {
 	sendMessage( "xml", xml );
 	sendMessage( 'done', obj.failed, obj.passed, obj.total, obj.runtime);
 };
-
-function xmlEncode(message) {
-	return message.replace(/\&/g,'&amp;').replace(/</g,'&lt;')
-		.replace(/>/g,'&gt;').replace(/\'/g,'&apos;').replace(/\"/g,'&quot;');
-}
