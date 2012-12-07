@@ -38,16 +38,18 @@ var suiteName = url.split(/\/\/[^\/]+/)[1]
   .replace(/^\-|\-$/g, "")
   .replace(/\-+/g, "-");
 
-var buildOutpuDir = system.env['JUNIT_OUTPUT'];
+var buildOutputDir = system.env['JUNIT_OUTPUT'];
 
-if( !fs.exists(buildOutpuDir) ){
-  fs.makeDirectory(buildOutpuDir);
-}
+if( buildOutputDir ) {
+  if( !fs.exists(buildOutputDir) ){
+    fs.makeDirectory(buildOutputDir);
+  }
 
-var resultsFilename = buildOutpuDir + 'TEST-' + suiteName + ".xml";
+  var resultsFilename = buildOutputDir + 'TEST-' + suiteName + ".xml";
 
-if( fs.exists(resultsFilename) ){
-  fs.remove( resultsFilename );
+  if( fs.exists(resultsFilename) ){
+    fs.remove( resultsFilename );
+  }
 }
 
 // Messages are sent to the parent by appending them to the tempfile.
@@ -56,7 +58,7 @@ function sendMessage(args) {
 
   fs.write(tmpfile, JSON.stringify(args) + '\n', 'a');
 
-  if (/^xml/.test(args[0])){
+  if (/^xml/.test(args[0]) && buildOutputDir ){
     fs.write( resultsFilename, args[1], "a" );
   }
 
