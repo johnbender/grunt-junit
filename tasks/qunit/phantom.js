@@ -95,6 +95,7 @@ var injected;
 page.onConsoleMessage = function(message) {
   sendMessage(['console', message]);
 };
+
 page.onResourceRequested = function(request) {
   if (/\/qunit\.js$/.test(request.url)) {
     // Reset injected to false, if for some reason a redirect occurred and
@@ -103,26 +104,26 @@ page.onResourceRequested = function(request) {
   }
   sendDebugMessage('onResourceRequested', request.url);
 };
+
 page.onResourceReceived = function(request) {
   if (request.stage === 'end') {
     sendDebugMessage('onResourceReceived', request.url);
   }
 };
 
+page.onLoadFinished = function() {
+  // Inject QUnit helper file.
+  sendDebugMessage('inject', qunit);
+  page.injectJs(qunit);
+
+	// Because injection happens after window load, "begin" must be sent
+  sendMessage(['begin']);
+};
+
 page.open(url, function(status) {
-  // Only execute this code if QUnit has not yet been injected.
-  if (injected) { return; }
-  injected = true;
   // The window has loaded.
   if (status !== 'success') {
     // File loading failure.
     sendMessage(['done_fail', url]);
-  } else {
-    // Inject QUnit helper file.
-    sendDebugMessage('inject', qunit);
-    page.injectJs(qunit);
-    // Because injection happens after window load, "begin" must be sent
-    // manually.
-    sendMessage(['begin']);
   }
 });
